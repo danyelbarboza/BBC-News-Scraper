@@ -7,6 +7,7 @@ def get_bbc_news():
     
     articles = soup.find_all("div", attrs={"data-testid": "dundee-card"})
     
+    seen_titles = set()
     all_articles = []
     
     for article in articles:
@@ -21,11 +22,12 @@ def get_bbc_news():
                 link = "https://www.bbc.com" + link
             time_text = time_tag.text.strip() if time_tag else "Horário não encontrado"
 
-        
-            all_articles.append({
-            'title': title,
-            'link': link,
-            'time': time_text
+            if title not in seen_titles:
+                seen_titles.add(title)
+                all_articles.append({
+                'title': title,
+                'link': link,
+                'time': time_text
         })
     
     return all_articles
