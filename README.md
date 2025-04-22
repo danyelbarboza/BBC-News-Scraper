@@ -1,5 +1,3 @@
-traduza para o ingles
-
 # BBC News Scraper
 
 ## Descrição
